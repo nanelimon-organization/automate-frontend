@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import {
-  Box,
   Button,
   Dialog,
   DialogActions,
@@ -12,16 +11,11 @@ import {
   FormControlLabel,
   Grid,
   InputBase,
-  InputLabel,
-  MenuItem,
   NativeSelect,
   Radio,
   RadioGroup,
-  Select,
-  TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
 const series = ["Ankara", "İstanbul", "Diğer"];
