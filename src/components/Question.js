@@ -1,7 +1,7 @@
 import { Avatar, Box, Grid, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import user from '../useravatar.png'
-function Answer({answer}) {
+import user from '../assets/useravatar.png'
+function Question({answer}) {
   const animations = {
     initial: { scale: 0, opacity: 0 },
     animate: { scale: 1, opacity: 1 },
@@ -63,4 +63,4 @@ function Answer({answer}) {
   );
 }
 
-export default Answer;
+export default Question;

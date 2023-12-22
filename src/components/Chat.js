@@ -1,7 +1,7 @@
 import { Box, Grid } from "@mui/material";
-import Question from "./Answer";
-import Answer from "./Question";
+import Answer from "./Answer";
 
+import Question from '../components/Question'
 function Chat({ questions }) {
 
   
@@ -33,9 +33,9 @@ function Chat({ questions }) {
               }}
             >
               {questions.indexOf(quest) % 2 === 1 ? (
-                <Question quest={quest} />
+                <Answer quest={quest} />
               ) : (
-                <Answer answer={quest} />
+                <Question answer={quest} />
               )}
             </Box>
           </Grid>

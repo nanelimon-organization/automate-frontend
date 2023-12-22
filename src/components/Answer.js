@@ -1,20 +1,10 @@
-import styled from "@emotion/styled";
-import {
-  Avatar,
-  Box,
-  Button,
-  Grid,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Grid, Typography } from "@mui/material";
 import { motion } from "framer-motion";
-import { blueGrey } from "@mui/material/colors";
-import map from "../map.png";
-import nanelimonlogo from "../nanelimonlogo.png";
+import nanelimonlogo from "../assets/nanelimonlogo.png";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { useCallback, useState } from "react";
 
-function Question({ quest }) {
+function Answer({ quest }) {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   });
@@ -49,17 +39,6 @@ function Question({ quest }) {
   };
 
   const today = new Date();
-
-  const ColorButton = styled(Button)(({ theme }) => ({
-    marginY: 1,
-    width: "100%",
-    color: "#374259",
-    backgroundColor: "white",
-    "&:hover": {
-      backgroundColor: "#374259",
-      color: "white",
-    },
-  }));
 
   return (
     <>
@@ -108,21 +87,20 @@ function Question({ quest }) {
                   Size en yakın servis tespit edilmiştir.
                 </Typography>
 
-                {isLoaded ? <Box width={350} height={250}><GoogleMap
-                    center={center}
-                    zoom={15}
-                    onLoad={onLoad}
-                    mapContainerStyle={{width: "100%",height: "100%"}}
-                    onUnmount={onUnmount}
-                  /></Box> : <></>}
-                  
-                {/* <Box
-                  marginY={1}
-                  width={350}
-                  height={250}
-                  component="img"
-                  src={map}
-                /> */}
+                {isLoaded ? (
+                  <Box width={350} height={250}>
+                    <GoogleMap
+                      center={center}
+                      zoom={15}
+                      onLoad={onLoad}
+                      mapContainerStyle={{ width: "100%", height: "100%" }}
+                      onUnmount={onUnmount}
+                    />
+                  </Box>
+                ) : (
+                  <></>
+                )}
+
                 <Typography fontWeight="bold" fontSize={24} color="white">
                   {quest.value.name}
                 </Typography>
@@ -135,9 +113,6 @@ function Question({ quest }) {
               </>
             ) : (
               <>
-               
-                 
-              
                 <Typography fontSize={16} color="white">
                   {quest.value}
                 </Typography>
@@ -158,4 +133,4 @@ function Question({ quest }) {
   );
 }
 
-export default Question;
+export default Answer;
