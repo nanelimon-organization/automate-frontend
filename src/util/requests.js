@@ -8,6 +8,7 @@ export async function postQuestion(question) {
     return response.data;
   } catch (e) {
     console.log("hata!");
+    
   }
 }
 

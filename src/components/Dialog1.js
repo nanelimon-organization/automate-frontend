@@ -19,55 +19,9 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import { PACKAGES, SERIES, YEARKM } from "../constants/contants";
 
-const series = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "M2",
-  "M3",
-  "M4",
-  "M5",
-  "M6",
-  "M7",
-  "M8",
-  "X1",
-  "X2",
-  "X3",
-  "X4",
-  "X5",
-  "X6",
-  "X7",
-  "X3M",
-  "X4M",
-  "X5M",
-  "X6M",
-  "Z4",
-  "i4",
-  "iX3",
-  "iX",
-  "i7",
-  "iX1",
-  "i3BEV",
-];
-const packages = ["BMW Service Inclusive", "BMW Service Inclusive Plus"];
-const yearkm = [
-  "3/100.000",
-  "3/40.000",
-  "3/60.000",
-  "4/120.000",
-  "4/60.000",
-  "4/100.000",
-  "4/80.000",
-  "5/60.000",
-  "5/100.000",
-  "5/80.000",
-];
+
 
 const provinces = ["İstanbul"];
 const districts = ["Ümraniye"];
@@ -93,6 +47,7 @@ function Dialog1({
       setStep(0)
     }
   }
+
   function previousStep() {
     if(step>0){
       setStep(step - 1);
@@ -100,8 +55,8 @@ function Dialog1({
       handleClose();
       setStep(0)
     }
-    console.log(step);
   }
+  
   const handleSasi = (event) => {
     setData((prev) => ({ ...prev, sasi: event.target.value }));
   };
@@ -163,7 +118,7 @@ function Dialog1({
                   input={<BootstrapInput />}
                 >
                   <option aria-label="None" value="" />
-                  {series.map((serie) => (
+                  {SERIES.map((serie) => (
                     <option value={serie}>{serie}</option>
                   ))}
                 </NativeSelect>
@@ -181,7 +136,7 @@ function Dialog1({
                   input={<BootstrapInput />}
                 >
                   <option aria-label="None" value="" />
-                  {packages.map((pckg) => (
+                  {PACKAGES.map((pckg) => (
                     <option value={pckg}>{pckg}</option>
                   ))}
                 </NativeSelect>
@@ -199,7 +154,7 @@ function Dialog1({
                   input={<BootstrapInput />}
                 >
                   <option aria-label="None" value="" />
-                  {yearkm.map((yearkm) => (
+                  {YEARKM.map((yearkm) => (
                     <option value={yearkm}>{yearkm}</option>
                   ))}
                 </NativeSelect>
@@ -211,7 +166,7 @@ function Dialog1({
     </>
   );
 
-  if (step == 1) {
+  if (step === 1) {
     content = (
       <>
         <DialogContent>
@@ -279,7 +234,7 @@ function Dialog1({
     );
   }
 
-  if (step == 2) {
+  if (step === 2) {
     content = (
       <>
         <DialogContent>
@@ -381,7 +336,7 @@ function Dialog1({
     );
   }
 
-  if (step == 3) {
+  if (step === 3) {
     content = (
       <>
         <DialogContent>
@@ -483,7 +438,7 @@ function Dialog1({
           Vazgeç
         </ColorButton2>
         <ColorButton fullWidth onClick={nextStep} variant="text">
-          {step != 3 ? "Devam" : "Gönder"}
+          {step !== 3 ? "Devam" : "Gönder"}
         </ColorButton>
       </DialogActions>
     </Dialog>

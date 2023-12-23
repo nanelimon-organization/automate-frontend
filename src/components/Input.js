@@ -1,16 +1,14 @@
 import { ArrowUpward, Delete, PhotoCamera } from "@mui/icons-material";
-import PlaceIcon from '@mui/icons-material/Place';
-import DoneIcon from '@mui/icons-material/Done';
+import PlaceIcon from "@mui/icons-material/Place";
+import DoneIcon from "@mui/icons-material/Done";
 import {
   Badge,
   Box,
-  Button,
   Container,
   Grid,
   IconButton,
   TextField,
   Tooltip,
-  Typography,
 } from "@mui/material";
 
 function Input({
@@ -19,29 +17,18 @@ function Input({
   askQuestion,
   textFieldHandler,
   isAsked,
-  handleOpen,
   clearChat,
   openFilePicker,
   filesContent,
-  getLocation
+  getLocation,
 }) {
   return (
     <>
-      <Grid item container sx={{ position: "fixed", bottom: 0 }}>
-        <Grid
-          item
-          container
-          sx={{
-            backgroundColor: "white",
-            flexDirection: "row",
-            width: "100%",
-          }}
-        >
-          <Container
-            sx={{ display: "flex", alignItems: "center", paddingBottom: 2 }}
-          >
+      <Grid item container sx={styles.gridContainer}>
+        <Grid item container sx={styles.gridItemContainer}>
+          <Container sx={styles.container}>
             <Tooltip title="En yakın servisi görmek için tıkla!">
-            <IconButton
+              <IconButton
                 disabled={isAsked ? true : false}
                 sx={{
                   width: 48,
@@ -53,30 +40,25 @@ function Input({
               >
                 <PlaceIcon />
               </IconButton>
-              </Tooltip>
-              <Tooltip title="Sohbeti temizle">
-            <IconButton
-              disabled={isAsked ? true : false}
-              sx={{
-                marginRight: 3,
-                width: 48,
-                height: 48,
-                color: `${hasError ? "red" : "black"}`,
-              }}
-              aria-label="arrow-upward"
-              onClick={clearChat}
-            >
-              <Delete />
-            </IconButton>
+            </Tooltip>
+            <Tooltip title="Sohbeti temizle">
+              <IconButton
+                disabled={isAsked ? true : false}
+                sx={{
+                  marginRight: 3,
+                  width: 48,
+                  height: 48,
+                  color: `${hasError ? "red" : "black"}`,
+                }}
+                aria-label="arrow-upward"
+                onClick={clearChat}
+              >
+                <Delete />
+              </IconButton>
             </Tooltip>
             <TextField
               variant="outlined"
-              sx={{
-                width: "95%",
-                backgroundColor: "white",
-                borderColor: "374259",
-                borderWidth: 2,
-              }}
+              sx={styles.textField}
               value={text}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -91,25 +73,7 @@ function Input({
               label="Merak ettiğini sor..."
               id="fullWidth"
             />
-            <Tooltip title='Gönder'>
-            <IconButton
-              disabled={isAsked ? true : false}
-              sx={{
-                marginLeft: 3,
-                width: 48,
-                height: 48,
-                color: `${hasError ? "red" : "black"}`,
-              }}
-              aria-label="arrow-upward"
-              onClick={(e) => {
-                askQuestion(text);
-              }}
-            >
-              <ArrowUpward />
-            </IconButton>
-            </Tooltip>
-            <Tooltip title='Fotoğraf ile sor'>
-            <Badge color="success" badgeContent={filesContent.length == 0 ? null : <DoneIcon />}>
+            <Tooltip title="Gönder">
               <IconButton
                 disabled={isAsked ? true : false}
                 sx={{
@@ -119,11 +83,32 @@ function Input({
                   color: `${hasError ? "red" : "black"}`,
                 }}
                 aria-label="arrow-upward"
-                onClick={openFilePicker}
+                onClick={(e) => {
+                  askQuestion(text);
+                }}
               >
-                <PhotoCamera />
+                <ArrowUpward />
               </IconButton>
-            </Badge>
+            </Tooltip>
+            <Tooltip title="Fotoğraf ile sor">
+              <Badge
+                color="success"
+                badgeContent={filesContent.length === 0 ? null : <DoneIcon />}
+              >
+                <IconButton
+                  disabled={isAsked ? true : false}
+                  sx={{
+                    marginLeft: 3,
+                    width: 48,
+                    height: 48,
+                    color: `${hasError ? "red" : "black"}`,
+                  }}
+                  aria-label="arrow-upward"
+                  onClick={openFilePicker}
+                >
+                  <PhotoCamera />
+                </IconButton>
+              </Badge>
             </Tooltip>
             <Grid item display="flex">
               {filesContent.map((file, index) => (
@@ -147,3 +132,26 @@ function Input({
 }
 
 export default Input;
+
+const styles = {
+  gridContainer: {
+    position: "fixed",
+    bottom: 0,
+  },
+  gridItemContainer: {
+    backgroundColor: "white",
+    flexDirection: "row",
+    width: "100%",
+  },
+  container: {
+    display: "flex",
+    alignItems: "center",
+    paddingBottom: 2,
+  },
+  textField: {
+    width: "95%",
+    backgroundColor: "white",
+    borderColor: "374259",
+    borderWidth: 2,
+  }
+};
